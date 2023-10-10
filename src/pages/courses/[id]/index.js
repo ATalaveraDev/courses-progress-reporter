@@ -3,7 +3,13 @@ import { Fragment } from 'react';
 import classes from '../courses.module.css';
 import Link from 'next/link';
 
+import { FIREBASE_PATH } from '../../../../secrets/keys.js';
+
 function CoursePage(props) {
+  if (!props.course) {
+    return <div>Loading</div>
+  }
+
   return <Fragment>
     <section className={classes['course-container']}>
       <h1 className={classes.title}>{props.course.title}</h1>
@@ -19,8 +25,7 @@ function CoursePage(props) {
 
 export async function getStaticProps(context) {
   const courseId = context.params.id;
-
-  const response = await (await fetch(`https://nextjs-courses-api-default-rtdb.europe-west1.firebasedatabase.app/courses/${courseId}.json`)).json();
+  const response = await (await fetch(`${FIREBASE_PATH}/${courseId}.json`)).json();
 
   return {
     props: {
@@ -30,7 +35,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const response = await (await fetch('https://nextjs-courses-api-default-rtdb.europe-west1.firebasedatabase.app/courses.json')).json();
+  const response = await (await fetch(`${FIREBASE_PATH}.json`)).json();
   const data = [];
   
   for (const key in response) {
@@ -39,7 +44,7 @@ export async function getStaticPaths() {
 
   return {
     paths: data,
-    fallback: false
+    fallback: true
   };
 }
 
