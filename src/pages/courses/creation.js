@@ -1,16 +1,27 @@
 import { Fragment, useRef } from 'react';
+import { COURSES_API_PATH } from '../../../secrets/keys';
+import { useRouter } from 'next/router';
 
 export default function CourseCreationPage() {
   const title = useRef();
   const progress = useRef();
+  const router = useRouter();
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
     
     const value = {
       title: title.current.value,
       progress: parseInt(progress.current.value)
     };
+
+    await fetch(`${COURSES_API_PATH}`, {
+      method: 'POST',
+      body: JSON.stringify(value),
+      'Content-Type': 'application/json',
+    });
+
+    router.push('/');
   }
 
   return (
