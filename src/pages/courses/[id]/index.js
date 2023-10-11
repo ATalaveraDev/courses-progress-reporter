@@ -4,6 +4,7 @@ import classes from '../courses.module.css';
 import Link from 'next/link';
 
 import { FIREBASE_PATH } from '../../../../secrets/keys.js';
+import { COURSES_API_PATH } from '../../../../secrets/keys.js';
 
 function CoursePage(props) {
   if (!props.course) {
@@ -25,11 +26,13 @@ function CoursePage(props) {
 
 export async function getStaticProps(context) {
   const courseId = context.params.id;
-  const response = await (await fetch(`${FIREBASE_PATH}/${courseId}.json`)).json();
+  
+  const data = await fetch(`${COURSES_API_PATH}/${courseId}`);
+  const course = await data.json();
 
   return {
     props: {
-      course: { ...response }
+      course
     }
   };
 }
