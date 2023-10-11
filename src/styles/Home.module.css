@@ -2,3 +2,21 @@
   width: 28rem;
   margin: auto;
 }
+
+.btn {
+  min-height: 2.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(60, 11, 106);
+}
+
+.btn-link {
+  background-color: blueviolet;
+  border-color: blueviolet;
+  color: white;
+}
