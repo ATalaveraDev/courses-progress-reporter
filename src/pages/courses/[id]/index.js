@@ -34,6 +34,7 @@ export async function getStaticProps(context) {
   };
 }
 
+// this should be improved for real use case
 export async function getStaticPaths() {
   const response = await (await fetch(`${FIREBASE_PATH}.json`)).json();
   const data = [];

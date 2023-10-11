@@ -1,7 +1,7 @@
 import CoursesList from '../../components/courses/courses-list';
-import classes from '@/styles/Home.module.css'
+import classes from '@/styles/Home.module.css';
 
-import { COURSES } from '../../mock-data';
+import { COURSES_API_PATH } from '../../secrets/keys';
 
 export default function Home(props) {
   return (
@@ -12,19 +12,13 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const response = await (await fetch('https://nextjs-courses-api-default-rtdb.europe-west1.firebasedatabase.app/courses.json')).json();
-  const data = [];
+  const data = await fetch(`${COURSES_API_PATH}`)
 
-  for (const key in response) {
-    data.push({ 
-      id: key,
-      ...response[key]
-    });
-  }
+  const { courses } = await data.json();
   
   return {
     props: {
-      courses: [...data]
+      courses
     },
     revalidate: 60
   };
