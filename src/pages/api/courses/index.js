@@ -14,8 +14,22 @@ export default async function handler(req, res) {
       });
     }
 
-    res
-      .status(200)
-      .json({ courses: data });
+    res.status(200).json({ courses: data });
+    
+    return;
   }
+
+  if (req.method === 'POST') {
+    await fetch(`${FIREBASE_PATH}.json`, {
+      method: 'POST',
+      body: req.body,
+      'Content-type': 'application/json',
+    });
+
+    res.status(200).json({ response: 'Course created' });
+
+    return;
+  }
+
+  res.status(200).json({ response: 'works' });
 }

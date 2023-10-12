@@ -29,3 +29,67 @@
   font-style: italic;
   text-decoration: underline;
 }
+
+.creation-container {
+  padding: 1rem;
+  margin: 2rem auto;
+  box-shadow: 5px 25px 55px #16abff33;
+  border: 1px solid #16abff33;
+}
+
+.creation-form {
+  display: grid;
+  grid-template-areas: 
+    'title progress'
+    'action action';
+  grid-template-rows: 70px 35px;
+  margin-top: 2rem;
+}
+
+.creation-form .field:nth-child(1) {
+  grid-area: title;
+  grid-column: span;
+}
+
+.creation-form .field:nth-child(2) {
+  grid-area: progress;
+  grid-column: auto;
+}
+
+.field label {
+  display: block;
+}
+
+.field input {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid;
+  outline: none;
+  padding: 5px;
+}
+
+.focused input {
+  border-bottom: 1px solid #00a2ffc0;
+}
+
+.focused label {
+  color: #00a2ffc0;
+}
+
+.action {  
+  grid-area: action;
+  justify-self: center;
+}
+
+.action button {
+  width: 100%;
+}
+
+.error {
+  color: red;
+  display: flex;
+  height: 40px;
+  padding: 15px;
+  justify-self: center;
+}

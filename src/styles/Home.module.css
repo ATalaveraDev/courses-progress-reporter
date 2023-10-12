@@ -2,3 +2,31 @@
   width: 28rem;
   margin: auto;
 }
+
+.btn {
+  min-height: 2.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+}
+
+
+.btn-link {
+  background-color: blueviolet;
+  color: white;
+}
+
+.btn-link:hover {
+  background-color: rgb(60, 11, 106);
+}
+
+.btn-submit {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.btn-submit:hover {
+  background-color: rgb(80, 118, 188);
+}
